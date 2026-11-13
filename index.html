@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#2a1640" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%234a2a6a'/%3E%3Cpath d='M12 40 L32 16 L52 40 Z' fill='%23e2b453'/%3E%3Crect x='22' y='40' width='20' height='10' fill='%23e2b453'/%3E%3C/svg%3E" />
+  <title>Đi Huế — Hành trình về cố đô</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div id="loading">
+    <div class="ld-mark">順化</div>
+    <div class="ld-title">Đi <em>Huế</em></div>
+    <div class="ld-bar"><i></i></div>
+    <div class="ld-text">Đang dựng cố đô…</div>
+  </div>
+
+  <div id="title" class="hidden">
+    <div class="t-wrap">
+      <div class="t-kicker">Một chuyến du lịch góc nhìn thứ nhất</div>
+      <h1>Đi <em>Huế</em></h1>
+      <p class="t-sub">Hành trình về cố đô bên dòng Hương Giang — ăn bún bò, qua cầu Tràng Tiền, nghe chuông Thiên Mụ, thả hoa đăng trong đêm ca Huế.</p>
+      <div class="t-btns">
+        <button id="btn-continue" class="btn primary hidden">Tiếp tục hành trình</button>
+        <button id="btn-new" class="btn primary">Bắt đầu chuyến đi</button>
+        <div class="t-row">
+          <button id="btn-help" class="btn ghost">Hướng dẫn</button>
+          <button id="btn-settings" class="btn ghost">Cài đặt</button>
+        </div>
+      </div>
+    </div>
+    <div class="t-foot"><span>WASD</span> đi · <span>Chuột</span> nhìn · <span>Shift</span> chạy · <span>E</span> tương tác · <span>C</span> chụp ảnh · <span>Tab</span> hộ chiếu · <span>M</span> bản đồ</div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="clock"><span class="ic">☀️</span><b>07:00</b><small>Ngày 1</small></div>
+    <div id="money"><span class="coin"></span><b>1.000.000₫</b><span id="money-delta"></span></div>
+    <div id="compass"><div class="c-strip"></div><div class="c-tick"></div></div>
+    <div id="objective"></div>
+    <canvas id="minimap" width="220" height="220"></canvas>
+    <div id="crosshair"></div>
+    <div id="prompt"><kbd>E</kbd><span class="p-label"></span><small></small></div>
+    <div id="toasts"></div>
+    <div id="banner"></div>
+    <div id="subtitle"></div>
+    <div id="side-card"></div>
+    <div id="keys-hint"><span>Tab</span> Hộ chiếu <span>M</span> Bản đồ <span>C</span> Chụp ảnh <span>Esc</span> Tạm dừng</div>
+  </div>
+
+  <div id="photo-ui" class="hidden">
+    <div class="pf tl"></div><div class="pf tr"></div><div class="pf bl"></div><div class="pf br"></div>
+    <div class="ph-grid"></div>
+    <div class="ph-hint">Nhấn chuột để chụp · Lăn chuột để phóng to · <b>C</b> để thoát</div>
+  </div>
+  <div id="flash"></div>
+  <div id="fade"><span></span></div>
+
+  <div id="dialog" class="hidden">
+    <div class="d-head"><b class="d-name"></b><span class="d-role"></span></div>
+    <p class="d-text"></p>
+    <div class="d-choices"></div>
+  </div>
+
+  <div id="modal" class="hidden"><div class="m-box"></div></div>
+
+  <div id="touch">
+    <div id="touch-look"></div>
+    <div id="joy"><div id="joy-knob"></div></div>
+    <div class="tb-wrap">
+      <button class="tb big" data-key="KeyE">E</button>
+      <button class="tb" data-key="KeyF">F</button>
+      <button class="tb" data-key="KeyC">📷</button>
+      <button class="tb shot" data-key="Mouse0">Chụp</button>
+      <button class="tb" data-key="Run" data-toggle="1">Chạy</button>
+      <button class="tb" data-key="Space">Nhảy</button>
+    </div>
+    <div class="tb-top">
+      <button class="tb sm" data-key="Tab">Hộ chiếu</button>
+      <button class="tb sm" data-key="KeyM">Bản đồ</button>
+      <button class="tb sm" id="tb-pause">☰</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
